@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     # choice = int(input("Enter choice: "))
     for i, (service_uuid, characteristic) in enumerate(service_characteristic_pair):
-        service_uuid, characteristic_uuid = service_characteristic_pair[choice]
+        service_uuid, characteristic_uuid = service_characteristic_pair[i]
         # Write the content to the characteristic
         contents = peripheral.read(service_uuid, characteristic_uuid)
         print(f"Contents: {contents}")
