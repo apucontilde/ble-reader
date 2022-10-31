@@ -25,7 +25,7 @@ if __name__ == "__main__":
     )
 
     # Scan for 5 seconds
-    adapter.scan_for(5000)
+    adapter.scan_for(15000)
     peripherals = adapter.scan_get_results()
 
     # Query the user to pick a peripheral
@@ -55,7 +55,12 @@ if __name__ == "__main__":
     for i, (service_uuid, characteristic) in enumerate(service_characteristic_pair):
         service_uuid, characteristic_uuid = service_characteristic_pair[i]
         # Write the content to the characteristic
-        contents = peripheral.read(service_uuid, characteristic_uuid)
+        try:
+            contents = peripheral.read(service_uuid, characteristic_uuid)
+        except Exception as e:
+            pass
+                        
+        print(f"{i}: {service_uuid} {characteristic}")
         print(f"Contents: {contents}")
 
     peripheral.disconnect()
